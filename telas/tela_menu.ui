@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
-    <height>485</height>
+    <width>685</width>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>390</y>
+     <x>310</x>
+     <y>380</y>
      <width>256</width>
      <height>41</height>
     </rect>
@@ -39,8 +39,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>-10</x>
      <y>-10</y>
-     <width>711</width>
-     <height>511</height>
+     <width>761</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="text">
@@ -56,7 +56,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>200</x>
      <y>-50</y>
      <width>491</width>
      <height>561</height>
@@ -72,9 +72,63 @@ p, li { white-space: pre-wrap; }
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QWidget" name="widgetMenu" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>30</y>
+     <width>211</width>
+     <height>531</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
+   <widget class="QPushButton" name="pushVendas">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Vendas</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushEstoque">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>120</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Estoque</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushMenu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>41</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>textBrowser</zorder>
+  <zorder>widgetMenu</zorder>
+  <zorder>pushMenu</zorder>
  </widget>
  <resources/>
  <connections/>

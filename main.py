@@ -7,21 +7,26 @@ import mysql.connector
 from tkinter import *
 from datetime import datetime
 import threading
-
 app = QtWidgets.QApplication([])
 
-def iniciar():
-    inicio.show()
-    QTimer.singleShot(1000, principal)
+menu = False
 
-def principal():
-    menuInicio.show()
-    inicio.close()
-
+# Função Menu tela inicial
+def function_menu():
+    global menu
+    if(menu == False):
+        inicio.widgetMenu.show()
+        menu = True
+    else:
+        inicio.widgetMenu.hide()
+        menu = False
 
 #tela inicial
-inicio = uic.loadUi("telas/tela_inicial.ui")
-menuInicio = uic.loadUi("telas/menuInicio.ui")
+inicio = uic.loadUi("telas/tela_menu.ui")
+pushMenu = inicio.pushMenu.clicked.connect(function_menu)
+#pushVendas = inicio.pushVendas.clicked.connect()
+#pushEstoque = inicio.pushEstoque.clocked.connect()
 
-iniciar()
+inicio.widgetMenu.hide()
+inicio.show()
 app.exec_()
