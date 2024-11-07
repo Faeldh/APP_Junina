@@ -57,6 +57,9 @@ pushVendas = inicio.pushVendas.clicked.connect(vendas)
 pushEstoque = inicio.pushEstoque.clicked.connect(estoque)
 pushVoltar = tela_estoque.pushVoltar.clicked.connect(tela_inicio)
 pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
+pushPesquisar = tela_vendas.pushPesquisar.clicked.connect()
+pushAdicionar = tela_vendas.pushAdicionar.clicked.connect()
+
 #pushPesquisa
 
 
