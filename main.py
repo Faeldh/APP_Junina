@@ -21,11 +21,31 @@ def function_menu():
         inicio.widgetMenu.hide()
         menu = False
 
+def estoque():
+    tela_estoque.show()
+    inicio.close()
+
+def vendas():
+    tela_vendas.show()
+    inicio.close()
+
+def tela_inicio():
+    inicio.show()
+    tela_estoque.close()
+    tela_vendas.close()
+
 #tela inicial
-inicio = uic.loadUi("telas/tela_menu.ui")
+inicio = uic.loadUi('telas/tela_menu.ui')
+tela_estoque = uic.loadUi('telas/tela_estoque.ui')
+tela_vendas = uic.loadUi('telas/tela_vendas.ui')
+
+#Botões
 pushMenu = inicio.pushMenu.clicked.connect(function_menu)
-#pushVendas = inicio.pushVendas.clicked.connect()
-#pushEstoque = inicio.pushEstoque.clocked.connect()
+pushVendas = inicio.pushVendas.clicked.connect(vendas)
+pushEstoque = inicio.pushEstoque.clicked.connect(estoque)
+pushVoltar = tela_estoque.pushVoltar.clicked.connect(tela_inicio)
+pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
+
 
 inicio.widgetMenu.hide()
 inicio.show()
