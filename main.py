@@ -10,6 +10,14 @@ from datetime import datetime
 import threading
 app = QtWidgets.QApplication([])
 
+# banco = mysql.connector.connect(
+#     host = 'localhost',
+#     port = '3307',
+#     user = 'root',
+#     password = '12345678',
+#     database = 'appjunina'
+# )
+
 menu = False
 estoque = [
     #0  1   2   3   4   5
@@ -43,25 +51,67 @@ def tela_inicio():
     tela_estoque.close()
     tela_vendas.close()
 
-#def vendaPesquisa():
+# def vendaPesquisa():
 
+# def adicionar estoque
+def adicionar_estoque():
+    print("Inicío da função")
+    nome = tela_estoque.lineNome.text()
+    valor_unit = tela_estoque.lineValorUNIT.text()
+    valor_unit = float(valor_unit)
+    quant_total = tela_estoque.lineQuant.text()
+    quant_total = int(quant_total)
 
-#tela inicial
+    colunas = f"nome, valor_unit, quant_total"
+
+    try:
+        print("Conexão com o banco de dados")
+        banco = mysql.connector.connect(
+            host = 'localhost',
+            port = '3307',
+            user = 'root',
+            password = '12345678',
+            database = 'appjunina'
+        )
+        cursor = banco.cursor()
+
+        print("Inicío da Query")
+        query = f"INSERT INTO estoque ({colunas}) VALUES (%s, %s, %s)"
+        values = (nome, valor_unit, quant_total)
+        cursor.execute(query, values)
+        print("Final da função")
+
+        banco.commit()
+    except:
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage('Não funcionou')
+        print("Erro linha 54+")
+        erro_produto.exec_()
+
+    finally:
+        cursor.close()
+        banco.close()
+
+# tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
 tela_estoque = uic.loadUi('telas/tela_estoque.ui')
 tela_vendas = uic.loadUi('telas/tela_vendas.ui')
 
-#Botões
+# Botões - Telas
 pushMenu = inicio.pushMenu.clicked.connect(function_menu)
 pushVendas = inicio.pushVendas.clicked.connect(vendas)
 pushEstoque = inicio.pushEstoque.clicked.connect(estoque)
+
+# Botões - Voltar
 pushVoltar = tela_estoque.pushVoltar.clicked.connect(tela_inicio)
 pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
-pushPesquisar = tela_vendas.pushPesquisar.clicked.connect()
-pushAdicionar = tela_vendas.pushAdicionar.clicked.connect()
 
-#pushPesquisa
+# Pesquisa
+#pushPesquisar = tela_vendas.pushPesquisar.clicked.connect()
 
+#Adicionar
+#pushAdicionar = tela_vendas.pushAdicionar.clicked.connect()
+pushAdicionarEstoque = tela_estoque.pushAdicionar.clicked.connect(adicionar_estoque)
 
 inicio.widgetMenu.hide()
 inicio.show()
