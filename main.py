@@ -10,9 +10,18 @@ import threading
 
 app = QtWidgets.QApplication([])
 
+def iniciar():
+    inicio.show()
+    QTimer.singleShot(1000, principal)
+
+def principal():
+    menuInicio.show()
+    inicio.close()
+
+
 #tela inicial
 inicio = uic.loadUi("telas/tela_inicial.ui")
+menuInicio = uic.loadUi("telas/menuInicio.ui")
 
-
-inicio.show()
+iniciar()
 app.exec_()
