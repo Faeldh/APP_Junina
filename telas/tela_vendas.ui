@@ -60,7 +60,13 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>🔍</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>16</width>
+      <height>16</height>
+     </size>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineNome">
@@ -240,6 +246,9 @@
      <property name="text">
       <string>R$</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="label_7">
      <property name="geometry">
@@ -255,6 +264,9 @@
      </property>
      <property name="text">
       <string>R$</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
@@ -301,6 +313,9 @@
       <width>141</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
