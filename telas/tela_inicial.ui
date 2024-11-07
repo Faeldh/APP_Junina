@@ -13,30 +13,11 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>-30</x>
-     <y>-60</y>
-     <width>711</width>
-     <height>571</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>C:/Users/TEC 1/Downloads/old-wooden-textures.jpg</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>290</y>
+     <x>220</x>
+     <y>390</y>
      <width>256</width>
      <height>41</height>
     </rect>
@@ -53,20 +34,39 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;APP JUNINA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>-30</y>
-     <width>371</width>
-     <height>421</height>
+     <x>-10</x>
+     <y>-10</y>
+     <width>711</width>
+     <height>511</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>C:/Users/TEC 1/Downloads/pngwing.com (14).png</pixmap>
+    <pixmap>../imagens/old-wooden-textures.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>-50</y>
+     <width>491</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../imagens/pngwing.com (14).png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
