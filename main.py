@@ -57,22 +57,16 @@ def tela_inicio():
 def adicionar_estoque():
     print("Inicío da função")
     nome = tela_estoque.lineNome.text()
-    valor_unit = tela_estoque.lineValorUNIT.text()
-    valor_unit = float(valor_unit)
-    quant_total = tela_estoque.lineQuant.text()
-    quant_total = int(quant_total)
+    valor_unit = float(tela_estoque.lineValorUNIT.text())
+    quant_total = int(tela_estoque.lineQuant.text())
+    # valor_unit = float(valor_unit)
+    # quant_total = int(quant_total)
 
-    colunas = f"nome, valor_unit, quant_total"
+    colunas = "nome, valor_unit, quant_total"
 
     try:
         print("Conexão com o banco de dados")
-        banco = mysql.connector.connect(
-            host='localhost',
-            port='3307',
-            user='root',
-            password='12345678',
-            database='appjunina'
-        )
+        global banco
         cursor = banco.cursor()
 
         print("Início da Query")
