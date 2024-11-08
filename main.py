@@ -110,7 +110,7 @@ pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
 # Pesquisa
 #pushPesquisar = tela_vendas.pushPesquisar.clicked.connect()
 
-#Adicionar
+# Adicionar
 #pushAdicionar = tela_vendas.pushAdicionar.clicked.connect()
 pushAdicionarEstoque = tela_estoque.pushAdicionar.clicked.connect(adicionar_estoque)
 
