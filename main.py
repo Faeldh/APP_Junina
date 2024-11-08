@@ -27,14 +27,6 @@ banco = mysql.connector.connect(
 )
 
 menu = False
-estoque = [
-    #0  1   2   3   4   5
-    [0, "Água", 4,00],
-    [1, "Suco", 6,00],
-    [2, "Comida", 10,00],
-    [3, "Brinquedo", 25,00]
-]
-vendas = []
 
 # Função Menu tela inicial
 def function_menu():
