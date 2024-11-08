@@ -1,22 +1,30 @@
+# Imports de módulos padrão
 import sys
-from PyQt5 import uic, QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import QFileDialog, QApplication, QWidget, QPushButton, QTableWidget, QErrorMessage, QTimeEdit, QMainWindow
-from PyQt5.QtCore import QTimer, QTime
-from PyQt5.uic import loadUi
-import mysql
-import mysql.connector
-from tkinter import *
-from datetime import datetime
+import time
 import threading
+from datetime import datetime
+from tkinter import *
+from sqlite3 import Cursor
+
+# Imports de terceiros
+import mysql.connector
+from mysql.connector import Error
+from PyQt5 import uic, QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import (
+    QFileDialog, QApplication, QWidget, QPushButton, QTableWidget, 
+    QErrorMessage, QTimeEdit, QMainWindow
+)
+from PyQt5.QtCore import QTimer, QTime
+
 app = QtWidgets.QApplication([])
 
-# banco = mysql.connector.connect(
-#     host = 'localhost',
-#     port = '3307',
-#     user = 'root',
-#     password = '12345678',
-#     database = 'appjunina'
-# )
+banco = mysql.connector.connect(
+    host = 'localhost',
+    port = '3307',
+    user = 'root',
+    password = '12345678',
+    database = 'appjunina'
+)
 
 menu = False
 estoque = [
@@ -67,30 +75,31 @@ def adicionar_estoque():
     try:
         print("Conexão com o banco de dados")
         banco = mysql.connector.connect(
-            host = 'localhost',
-            port = '3307',
-            user = 'root',
-            password = '12345678',
-            database = 'appjunina'
+            host='localhost',
+            port='3307',
+            user='root',
+            password='12345678',
+            database='appjunina'
         )
         cursor = banco.cursor()
 
-        print("Inicío da Query")
+        print("Início da Query")
         query = f"INSERT INTO estoque ({colunas}) VALUES (%s, %s, %s)"
         values = (nome, valor_unit, quant_total)
         cursor.execute(query, values)
         print("Final da função")
 
         banco.commit()
-    except:
+    except mysql.connector.Error as e:
         erro_produto = QtWidgets.QErrorMessage()
-        erro_produto.showMessage('Não funcionou')
-        print("Erro linha 54+")
+        erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
+        print("Erro na conexão ou execução do SQL: ", str(e))
         erro_produto.exec_()
-
     finally:
-        cursor.close()
-        banco.close()
+        if banco.is_connected():
+            cursor.close()
+            banco.close()
+
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
