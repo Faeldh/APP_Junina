@@ -21,8 +21,8 @@ from datetime import datetime #
 from tkinter import * #
 from sqlite3 import Cursor #
 
-import mysql.connector #
 from PyQt5 import uic, QtWidgets, QtCore, QtGui #
+import mysql.connector #
 from PyQt5.QtWidgets import QFileDialog, QApplication, QWidget, QPushButton, QTableWidget, QErrorMessage, QTimeEdit #
 import mysql #
 from PyQt5.QtCore import QTimer, QTime #

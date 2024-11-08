@@ -59,13 +59,22 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>🔍</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../imagens/lupa.png</normaloff>../imagens/lupa.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>16</width>
-      <height>16</height>
+      <width>19</width>
+      <height>19</height>
      </size>
     </property>
    </widget>

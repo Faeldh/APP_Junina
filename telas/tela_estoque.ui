@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>862</width>
-    <height>633</height>
+    <height>632</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -118,8 +118,21 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
     <property name="text">
-     <string>🔍</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../imagens/lupa.png</normaloff>../imagens/lupa.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineNome">

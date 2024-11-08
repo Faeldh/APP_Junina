@@ -41,6 +41,7 @@ def function_menu():
 
 def estoque():
     tela_estoque.show()
+    tableEstoque()
     inicio.close()
 
 def vendas():
@@ -54,14 +55,40 @@ def tela_inicio():
 
 # def vendaPesquisa():
 
+def tableEstoque():
+    try: # Mostrar na tabela
+        global banco
+        cursor = banco.cursor()
+
+        cursor.execute("SELECT id, nome, valor_unit, quant_total FROM estoque")
+        selecao = cursor.fetchall()
+
+        tela_estoque.tableEstoque.setRowCount(len(selecao))
+
+        print("Início do looping")
+
+        for i in range(len(selecao)):
+            for j in range(5): # Adicionando Linhas na tabela
+                if(j == 4):
+                    calculo = selecao[i][2] * selecao[i][3]
+                    tela_estoque.tableEstoque.setItem(i, j, QtWidgets.QTableWidgetItem(str(calculo)))
+                else:
+                    tela_estoque.tableEstoque.setItem(i, j, QtWidgets.QTableWidgetItem(str(selecao[i][j])))
+        print("Final do looping")
+    except:
+        print("Erro na função de mostrar na tabela")
+        print(f"{selecao}")
+    finally:
+        cursor.close()
+        banco.close()
+
+
 # def adicionar estoque
 def adicionar_estoque():
     print("Inicío da função")
     nome = tela_estoque.lineNome.text()
     valor_unit = float(tela_estoque.lineValorUNIT.text())
     quant_total = int(tela_estoque.lineQuant.text())
-    # valor_unit = float(valor_unit)
-    # quant_total = int(quant_total)
 
     colunas = "nome, valor_unit, quant_total"
 
@@ -80,12 +107,11 @@ def adicionar_estoque():
     except mysql.connector.Error as e:
         erro_produto = QtWidgets.QErrorMessage()
         erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
-        print("Erro na conexão ou execução do SQL: ", str(e))
+        print("Erro na função adicionar_estoque: ", str(e))
         erro_produto.exec_()
     finally:
         if banco.is_connected():
-            cursor.close()
-            banco.close()
+            tableEstoque()
 
 #def banco_dados():
 
