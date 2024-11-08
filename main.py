@@ -11,7 +11,8 @@ import mysql.connector
 from mysql.connector import Error
 from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import (
-    QFileDialog, QApplication, QWidget, QPushButton, QTableWidget, 
+    QFileDialog, QApplication, QWidget, 
+    QPushButton, QTableWidget, 
     QErrorMessage, QTimeEdit, QMainWindow
 )
 from PyQt5.QtCore import QTimer, QTime
@@ -86,6 +87,7 @@ def adicionar_estoque():
             cursor.close()
             banco.close()
 
+#def banco_dados():
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
