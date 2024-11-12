@@ -1,40 +1,34 @@
-# import mysql.connector
-# from mysql.connector import Error
-# from PyQt5.QtWidgets import QFileDialog, QApplication, QWidget, QPushButton, QTableWidget, QErrorMessage, QTimeEdit
-# import sys
-# from PyQt5 import uic, QtWidgets, QtCore, QtGui
-# import threading
-# from datetime import datetime
-# import time
-# import mysql
-# from PyQt5.QtCore import QTimer
-# from PyQt5.QtWidgets import QApplication, QMainWindow
-# from tkinter import *
-# from PyQt5.uic import loadUi
-# from sqlite3 import Cursor
-# from PyQt5.QtCore import QTimer, QTime
+# Imports de módulos padrão
+import sys
+import time
+import threading
+from datetime import datetime
+from tkinter import *
+from sqlite3 import Cursor
 
-import sys #
-import time #
-import threading #
-from datetime import datetime #
-from tkinter import * #
-from sqlite3 import Cursor #
+# Imports de terceiros
+import mysql.connector
+from mysql.connector import Error
+from PyQt5 import uic, QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import (
+    QFileDialog, QApplication, QWidget, 
+    QPushButton, QTableWidget, 
+    QErrorMessage, QTimeEdit, QMainWindow
+)
+from PyQt5.QtCore import QTimer, QTime
 
-from PyQt5 import uic, QtWidgets, QtCore, QtGui #
-import mysql.connector #
-from PyQt5.QtWidgets import QFileDialog, QApplication, QWidget, QPushButton, QTableWidget, QErrorMessage, QTimeEdit #
-import mysql #
-from PyQt5.QtCore import QTimer, QTime #
-from PyQt5.uic import loadUi #
-from mysql.connector import Error #
-from PyQt5.QtWidgets import QApplication, QMainWindow #
-from PyQt5.QtCore import QTimer #
+banco = mysql.connector.connect(
+    host = 'localhost',
+    port = '3306',
+    user = 'root',
+    password = '12345678',
+    database = 'appjunina'
+)
 
 try:
     banco = mysql.connector.connect(
         host='localhost',
-        port='3307',
+        port='3306',
         user='root',
         password='12345678',
         database='appjunina'
