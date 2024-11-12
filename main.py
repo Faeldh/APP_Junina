@@ -92,15 +92,15 @@ def tableVendas():
         )
         cursor = banco.cursor()
 
-        cursor.execute("SELECT id, nome FROM estoque")
+        cursor.execute("SELECT id, nome, quant_total FROM estoque")
         selecao = cursor.fetchall()
 
-        tela_vendas.tablePesquisa.setRowCount(len(selecao))
+        tela_vendas.tableListaEstoque.setRowCount(len(selecao))
 
         print("Início do looping")
         for i in range(len(selecao)):
-            for j in range(2):
-                tela_vendas.tablePesquisa.setItem(i, j, QtWidgets.QTableWidgetItem(str(selecao[i][j])))
+            for j in range(3):
+                tela_vendas.tableListaEstoque.setItem(i, j, QtWidgets.QTableWidgetItem(str(selecao[i][j])))
     except:
         print("Erro na função de mostrar tabela de vendas")
     finally:
@@ -205,8 +205,60 @@ def atualizar_estoque():
         if banco.is_connected():
             tableEstoque()
 
+def pesquisa_vendas():
+    banco = mysql.connector.connect(
+        host = 'localhost',
+        port = '3306',
+        user = 'root',
+        password = '12345678',
+        database = 'appjunina'
+    )
+    cursor = banco.cursor()
+    pesquisa = ""
 
-#def banco_dados():
+    id = tela_vendas.lineID.text()
+    nome = tela_vendas.lineNome.text()
+
+    print("Inicio da função")
+
+    if(nome != "" and id == ""): # nome preenchido / id vazio
+        query = "SELECT id, nome, quant_total FROM estoque WHERE nome LIKE %s"
+        values = ('%' + nome + '%', )
+    elif(nome == "" and id != ""): # nome vazio / id preenchido
+        id = int(tela_vendas.lineID.text())
+        query = "SELECT id, nome, quant_total FROM estoque WHERE id = %s"
+        values = (id, )
+        pesquisa = True
+    elif(nome != "" and id != ""): # nome e id preenchidos
+        id = int(tela_vendas.lineID.text())
+        query = "SELECT id, nome, quant_total FROM estoque WHERE id = %s OR nome LIKE %s"
+        values = (id, '%' + nome + '%')
+    else: # nome e id vazios
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage(f"Não possui valor na pesquisa: {str(mysql.connector.Error)}")
+        print("Sem valor pra pesquisa", str(mysql.connector.Error))
+        erro_produto.exec_()
+        return
+
+    cursor.execute(query, values)
+    selecao = cursor.fetchall()
+    
+    tela_vendas.tablePesquisa.setRowCount(len(selecao))
+
+    # Looping
+    for i in range(len(selecao)):
+        for j in range(3):
+            tela_vendas.tablePesquisa.setItem(i, j, QtWidgets.QTableWidgetItem(str(selecao[i][j])))
+
+    if(pesquisa == True):
+        id = tela_vendas.lineID.text()
+        query = "SELECT valor_unit FROM estoque WHERE id = %s"
+        values = (id, )
+        cursor.execute(query, values)
+        result = cursor.fetchone()
+        valor_unit = float(result[0])
+        valorUNIT = tela_vendas.labelValorUNIT.setText(f"{valor_unit:.2f}")
+
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
