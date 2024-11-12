@@ -47,6 +47,9 @@
      </rect>
     </property>
     <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string>ID</string>
     </property>
    </widget>
@@ -88,6 +91,9 @@
      </rect>
     </property>
     <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string>Nome</string>
     </property>
    </widget>
@@ -147,6 +153,9 @@
       </rect>
      </property>
      <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
       <string>Quantidade</string>
      </property>
     </widget>
@@ -180,7 +189,7 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>500</y>
+       <y>490</y>
        <width>171</width>
        <height>31</height>
       </rect>
@@ -192,22 +201,6 @@
       <string>Valor Total</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>500</y>
-       <width>31</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
-     </property>
-     <property name="text">
-      <string>R$</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="labelValorUNIT">
      <property name="geometry">
       <rect>
@@ -216,6 +209,9 @@
        <width>171</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">border: 1px solid white;</string>
@@ -249,6 +245,14 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: 1px solid white;</string>
      </property>
@@ -268,6 +272,14 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: 1px solid white;</string>
      </property>
@@ -276,6 +288,50 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>490</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>R$</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeEdit">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>530</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding-left:20px;
+background-color: transparent;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>
@@ -313,19 +369,6 @@
       <string>Total</string>
      </property>
     </column>
-   </widget>
-   <widget class="QTimeEdit" name="timeEdit">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>50</y>
-      <width>141</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -82,7 +82,6 @@ def tableEstoque():
         cursor.close()
         banco.close()
 
-
 # def adicionar estoque
 def adicionar_estoque():
     print("Inicío da função")
