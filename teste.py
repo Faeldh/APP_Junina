@@ -17,14 +17,6 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import QTimer, QTime
 
-banco = mysql.connector.connect(
-    host = 'localhost',
-    port = '3306',
-    user = 'root',
-    password = '12345678',
-    database = 'appjunina'
-)
-
 try:
     banco = mysql.connector.connect(
         host='localhost',
