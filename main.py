@@ -325,6 +325,34 @@ def tableVendas():
 
     print("Final do Looping tableVendas")
 
+def remover_vendas():
+    banco = mysql.connector.connect(
+        host = 'localhost',
+        port = '3306',
+        user = 'root',
+        password = '12345678',
+        database = 'appjunina'
+    )
+    cursor = banco.cursor()
+    id = int(tela_vendas.lineID.text())
+
+    try:
+        print("Início da função")
+        query = f"DELETE FROM vendas WHERE id = %s"
+        values = (id, )
+        cursor.execute(query, values)
+
+        banco.commit()
+
+    except mysql.connector.Error as e:
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
+        print("Erro na função Deletar", str(e))
+        erro_produto.exec_()
+    finally:
+        if banco.is_connected():
+            tableVendas()
+
 def valor_total_item():
     valorUNIT = float(tela_vendas.labelValorUNIT.text())
     quant = int(tela_vendas.lineQuant.text())
@@ -332,7 +360,6 @@ def valor_total_item():
     soma = valorUNIT * quant
     
     valorTotal = tela_vendas.labelValorTotalItem.setText(f"{soma}")
-
 
 
 # tela inicial
@@ -355,7 +382,7 @@ pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
 # Botões Vendas
 pushPesquisaVendas = tela_vendas.pushPesquisa.clicked.connect(pesquisa_vendas)
 pushAdicionarVendas = tela_vendas.pushAdicionar.clicked.connect(adicionar_vendas)
-#pushRemoverVendas = tela_vendas.pushRemover.clicked.connect()
+pushRemoverVendas = tela_vendas.pushRemover.clicked.connect(remover_vendas)
 
 # Botões Estoque
 pushAdicionarEstoque = tela_estoque.pushAdicionar.clicked.connect(adicionar_estoque)
