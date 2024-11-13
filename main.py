@@ -252,11 +252,13 @@ def pesquisa_vendas():
 
     if(pesquisa == True):
         id = tela_vendas.lineID.text()
-        query = "SELECT valor_unit FROM estoque WHERE id = %s"
+        query = "SELECT nome, valor_unit FROM estoque WHERE id = %s"
         values = (id, )
         cursor.execute(query, values)
         result = cursor.fetchone()
-        valor_unit = float(result[0])
+        valor_unit = float(result[1])
+        nome = result[0]
+        nome = tela_vendas.lineNome.setText(f"{nome}")
         valorUNIT = tela_vendas.labelValorUNIT.setText(f"{valor_unit:.2f}")
 
 def adicionar_vendas():
@@ -323,10 +325,23 @@ def tableVendas():
 
     print("Final do Looping tableVendas")
 
+def valor_total_item():
+    valorUNIT = float(tela_vendas.labelValorUNIT.text())
+    quant = int(tela_vendas.lineQuant.text())
+
+    soma = valorUNIT * quant
+    
+    valorTotal = tela_vendas.labelValorTotalItem.setText(f"{soma}")
+
+
+
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
 tela_estoque = uic.loadUi('telas/tela_estoque.ui')
 tela_vendas = uic.loadUi('telas/tela_vendas.ui')
+
+#Campos das tela
+tela_vendas.lineQuant.editingFinished.connect(valor_total_item)
 
 # Botões - Telas
 pushMenu = inicio.pushMenu.clicked.connect(function_menu)
