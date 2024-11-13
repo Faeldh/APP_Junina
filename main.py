@@ -352,6 +352,7 @@ def remover_vendas():
     finally:
         if banco.is_connected():
             tableVendas()
+        total_vendas()
 
 def valor_total_item():
     valorUNIT = float(tela_vendas.labelValorUNIT.text())
@@ -361,6 +362,28 @@ def valor_total_item():
     
     valorTotal = tela_vendas.labelValorTotalItem.setText(f"{soma}")
 
+def total_vendas():
+    banco = mysql.connector.connect(
+        host = 'localhost',
+        port = '3306',
+        user = 'root',
+        password = '12345678',
+        database = 'appjunina'
+    )
+    print('Inicio total vendas')
+    cursor = banco.cursor()
+    
+    print('inicio da query')
+    query = 'SELECT SUM(total) from vendas'
+    cursor.execute(query, )
+
+    tot = cursor.fetchone()[0]
+
+    labelValorTotal = tela_vendas.labelValorTotal.setText(f'{tot}')
+    print('Fim da função')
+
+
+
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
@@ -369,6 +392,7 @@ tela_vendas = uic.loadUi('telas/tela_vendas.ui')
 
 #Campos das tela
 tela_vendas.lineQuant.editingFinished.connect(valor_total_item)
+
 
 # Botões - Telas
 pushMenu = inicio.pushMenu.clicked.connect(function_menu)
