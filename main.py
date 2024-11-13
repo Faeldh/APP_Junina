@@ -307,19 +307,21 @@ def tableVendas():
         password = '12345678',
         database = 'appjunina'
     )
-    print('Termino do banco')
+    print('Término do banco')
     cursor = banco.cursor()
-    cursor.execute("SELECT id, nome, valor_unit, quant, total FROM vendas")
 
-    print('Final da query')
+    print("Início da Query")
+    cursor.execute("SELECT id, nome, valor_unit, quant, total FROM vendas")
     result = cursor.fetchall()
     linha = len(result)
+    tela_vendas.tableVendas.setRowCount(linha) # Sempre conferir a quantidade de linhas com "setRowCount"
 
-    tela_vendas.tableVendas.setRowCount(linha)
     print('Inicio do looping TableVendas')
     for i in range(linha):
         for j in range(5):
             tela_vendas.tableVendas.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+
+    print("Final do Looping tableVendas")
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
