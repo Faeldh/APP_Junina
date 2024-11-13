@@ -324,6 +324,7 @@ def tableVendas():
             tela_vendas.tableVendas.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
 
     print("Final do Looping tableVendas")
+    total_vendas()
 
 def remover_vendas():
     banco = mysql.connector.connect(
@@ -352,7 +353,6 @@ def remover_vendas():
     finally:
         if banco.is_connected():
             tableVendas()
-        total_vendas()
 
 def valor_total_item():
     valorUNIT = float(tela_vendas.labelValorUNIT.text())
@@ -381,9 +381,6 @@ def total_vendas():
 
     labelValorTotal = tela_vendas.labelValorTotal.setText(f'{tot}')
     print('Fim da função')
-
-
-
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
