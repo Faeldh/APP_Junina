@@ -272,15 +272,17 @@ def adicionar_vendas():
     id = tela_vendas.lineID.text()
     nome = tela_vendas.lineNome.text()
     valorUNIT = float(tela_vendas.labelValorUNIT.text())
+    valorUNIT = float("{:.2f}".format(valorUNIT))  # Arredonda para duas casas decimais
     quant = int(tela_vendas.lineQuant.text())
 
     total = valorUNIT * quant
+    total = float("{:.2f}".format(total)) # Arredonda para duas casas decimais
 
-    colunas = "id, nome, valor_unit, quant, total "
+    colunas = "id, nome, valor_unit, quant, total"
 
     try:
         print("Início da Query")
-        query = f"INSERT vendas ({colunas}) VALUES (%s, %s, %s, %s, %s)"
+        query = f"INSERT INTO vendas ({colunas}) VALUES (%s, %s, %s, %s, %s)"
         values = (id, nome, valorUNIT, quant, total)
         cursor.execute(query, values)
         print("Final da função")
@@ -290,12 +292,12 @@ def adicionar_vendas():
     except mysql.connector.Error as e:
         erro_produto = QtWidgets.QErrorMessage()
         erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
-        print("Erro na função adicionar_estoque: ", str(e))
+        print("Erro na função adicionar_vendas: ", str(e))
         erro_produto.exec_()
 
     finally:
         if banco.is_connected():
-           tableVendas()
+            tableVendas()
 
 def tableVendas():
     banco = mysql.connector.connect(
@@ -306,41 +308,18 @@ def tableVendas():
         database = 'appjunina'
     )
     print('Termino do banco')
-
     cursor = banco.cursor()
-    query = 'SELECT * from vendas'
-    print('Final da query')
+    cursor.execute("SELECT id, nome, valor_unit, quant, total FROM vendas")
 
-    cursor.execute(query, )
+    print('Final da query')
     result = cursor.fetchall()
     linha = len(result)
-    
+
+    tela_vendas.tableVendas.setRowCount(linha)
     print('Inicio do looping TableVendas')
     for i in range(linha):
-        for j in range(len(result[i])):
+        for j in range(5):
             tela_vendas.tableVendas.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-   
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
