@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>685</width>
-    <height>563</height>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>MENU</string>
    </property>
   </widget>
   <zorder>label</zorder>

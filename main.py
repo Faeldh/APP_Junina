@@ -38,7 +38,7 @@ def estoque():
 
 def vendas():
     tela_vendas.show()
-    tableVendas()
+    tableLista()
     inicio.close()
 
 def tela_inicio():
@@ -81,7 +81,7 @@ def tableEstoque():
         cursor.close()
         banco.close()
 
-def tableVendas():
+def tableLista():
     try:
         banco = mysql.connector.connect(
             host = 'localhost',
@@ -259,6 +259,88 @@ def pesquisa_vendas():
         valor_unit = float(result[0])
         valorUNIT = tela_vendas.labelValorUNIT.setText(f"{valor_unit:.2f}")
 
+def adicionar_vendas():
+    banco = mysql.connector.connect(
+        host = 'localhost',
+        port = '3306',
+        user = 'root',
+        password = '12345678',
+        database = 'appjunina'
+    )
+    cursor = banco.cursor()
+    
+    id = tela_vendas.lineID.text()
+    nome = tela_vendas.lineNome.text()
+    valorUNIT = float(tela_vendas.labelValorUNIT.text())
+    quant = int(tela_vendas.lineQuant.text())
+
+    total = valorUNIT * quant
+
+    colunas = "id, nome, valor_unit, quant, total "
+
+    try:
+        print("Início da Query")
+        query = f"INSERT vendas ({colunas}) VALUES (%s, %s, %s, %s, %s)"
+        values = (id, nome, valorUNIT, quant, total)
+        cursor.execute(query, values)
+        print("Final da função")
+
+        banco.commit()
+
+    except mysql.connector.Error as e:
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
+        print("Erro na função adicionar_estoque: ", str(e))
+        erro_produto.exec_()
+
+    finally:
+        if banco.is_connected():
+           tableVendas()
+
+def tableVendas():
+    banco = mysql.connector.connect(
+        host = 'localhost',
+        port = '3306',
+        user = 'root',
+        password = '12345678',
+        database = 'appjunina'
+    )
+    print('Termino do banco')
+
+    cursor = banco.cursor()
+    query = 'SELECT * from vendas'
+    print('Final da query')
+
+    cursor.execute(query, )
+    result = cursor.fetchall()
+    linha = len(result)
+    
+    print('Inicio do looping TableVendas')
+    for i in range(linha):
+        for j in range(len(result[i])):
+            tela_vendas.tableVendas.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+   
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
@@ -276,6 +358,8 @@ pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
 
 # Botões Vendas
 pushPesquisaVendas = tela_vendas.pushPesquisa.clicked.connect(pesquisa_vendas)
+pushAdicionarVendas = tela_vendas.pushAdicionar.clicked.connect(adicionar_vendas)
+#pushRemoverVendas = tela_vendas.pushRemover.clicked.connect()
 
 # Botões Estoque
 pushAdicionarEstoque = tela_estoque.pushAdicionar.clicked.connect(adicionar_estoque)
