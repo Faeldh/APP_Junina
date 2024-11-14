@@ -402,6 +402,22 @@ def total_vendas():
         print("Erro na função total_vendas", str(e))
         erro_produto.exec_()
 
+def finalizar_vendas():
+    banco = mysql.connector.connect(
+        host = 'localhost',
+        port = '3306',
+        user = 'root',
+        password = '12345678',
+        database = 'appjunina'
+    )
+    cursor = banco.cursor()
+
+    cursor.execute('DELETE FROM vendas')
+    banco.commit()
+    tela_vendas.tableVendas.setRowCount(0)
+
+
+
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
 tela_estoque = uic.loadUi('telas/tela_estoque.ui')
@@ -423,6 +439,7 @@ pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
 pushPesquisaVendas = tela_vendas.pushPesquisa.clicked.connect(pesquisa_vendas)
 pushAdicionarVendas = tela_vendas.pushAdicionar.clicked.connect(adicionar_vendas)
 pushRemoverVendas = tela_vendas.pushRemover.clicked.connect(remover_vendas)
+pushFinalizarVendas = tela_vendas.pushFinalizar.clicked.connect(finalizar_vendas)
 
 # Botões Estoque
 pushAdicionarEstoque = tela_estoque.pushAdicionar.clicked.connect(adicionar_estoque)
