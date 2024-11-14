@@ -379,7 +379,7 @@ def total_vendas():
 
     tot = cursor.fetchone()[0]
 
-    labelValorTotal = tela_vendas.labelValorTotal.setText(f'{tot}')
+    labelValorTotal = tela_vendas.labelValorTotal.setText(f'{tot:.4f}')
     print('Fim da função')
 
 # tela inicial
