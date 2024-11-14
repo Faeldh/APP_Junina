@@ -273,16 +273,17 @@ def adicionar_vendas():
     
     id = tela_vendas.lineID.text()
     nome = tela_vendas.lineNome.text()
-    valorUNIT = float(tela_vendas.labelValorUNIT.text())
-    valorUNIT = float("{:.2f}".format(valorUNIT))  # Arredonda para duas casas decimais
-    quant = int(tela_vendas.lineQuant.text())
-
-    total = valorUNIT * quant
-    total = float("{:.2f}".format(total)) # Arredonda para duas casas decimais
-
-    colunas = "id, nome, valor_unit, quant, total"
-
     try:
+        valorUNIT = float(tela_vendas.labelValorUNIT.text())
+        valorUNIT = float("{:.2f}".format(valorUNIT))  # Arredonda para duas casas decimais
+        quant = int(tela_vendas.lineQuant.text())
+
+        total = valorUNIT * quant
+        total = float("{:.2f}".format(total)) # Arredonda para duas casas decimais
+
+        colunas = "id, nome, valor_unit, quant, total"
+
+    
         print("Início da Query")
         query = f"INSERT INTO vendas ({colunas}) VALUES (%s, %s, %s, %s, %s)"
         values = (id, nome, valorUNIT, quant, total)
@@ -291,10 +292,10 @@ def adicionar_vendas():
 
         banco.commit()
 
-    except mysql.connector.Error as e:
+    except (ValueError, TypeError) as e:
         erro_produto = QtWidgets.QErrorMessage()
-        erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
-        print("Erro na função adicionar_vendas: ", str(e))
+        erro_produto.showMessage(f"Erro de valor: {str(e)}")
+        print("Erro de valor na função adicionar_vendas", str(e))
         erro_produto.exec_()
 
     finally:
@@ -312,19 +313,25 @@ def tableVendas():
     print('Término do banco')
     cursor = banco.cursor()
 
-    print("Início da Query")
-    cursor.execute("SELECT id, nome, valor_unit, quant, total FROM vendas")
-    result = cursor.fetchall()
-    linha = len(result)
-    tela_vendas.tableVendas.setRowCount(linha) # Sempre conferir a quantidade de linhas com "setRowCount"
+    try:
+        print("Início da Query")
+        cursor.execute("SELECT id, nome, valor_unit, quant, total FROM vendas")
+        result = cursor.fetchall()
+        linha = len(result)
+        tela_vendas.tableVendas.setRowCount(linha) # Sempre conferir a quantidade de linhas com "setRowCount"
 
-    print('Inicio do looping TableVendas')
-    for i in range(linha):
-        for j in range(5):
-            tela_vendas.tableVendas.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
-
-    print("Final do Looping tableVendas")
-    total_vendas()
+        print('Inicio do looping TableVendas')
+        for i in range(linha):
+            for j in range(5):
+                tela_vendas.tableVendas.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+        print("Final do Looping tableVendas")
+    except mysql.connector.Error as e:
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage(f"Erro na função tableVendas {str(e)}")
+        print("Erro na função tableVendas", str(e))
+        erro_produto.exec_()
+    finally:
+        total_vendas()
 
 def remover_vendas():
     banco = mysql.connector.connect(
@@ -335,9 +342,9 @@ def remover_vendas():
         database = 'appjunina'
     )
     cursor = banco.cursor()
-    id = int(tela_vendas.lineID.text())
 
     try:
+        id = int(tela_vendas.lineID.text())
         print("Início da função")
         query = f"DELETE FROM vendas WHERE id = %s"
         values = (id, )
@@ -345,22 +352,29 @@ def remover_vendas():
 
         banco.commit()
 
-    except mysql.connector.Error as e:
+    except (ValueError, TypeError) as e:
         erro_produto = QtWidgets.QErrorMessage()
-        erro_produto.showMessage(f"Erro ao conectar ao banco de dados: {str(e)}")
-        print("Erro na função Deletar", str(e))
+        erro_produto.showMessage(f"Erro de valor: {str(e)}")
+        print("Erro de valor na função remover_vendas", str(e))
         erro_produto.exec_()
     finally:
         if banco.is_connected():
             tableVendas()
 
 def valor_total_item():
-    valorUNIT = float(tela_vendas.labelValorUNIT.text())
-    quant = int(tela_vendas.lineQuant.text())
+    try:
+        valorUNIT = float(tela_vendas.labelValorUNIT.text())
+        quant = int(tela_vendas.lineQuant.text())
 
-    soma = valorUNIT * quant
-    
-    valorTotal = tela_vendas.labelValorTotalItem.setText(f"{soma}")
+        soma = valorUNIT * quant
+        valorTotal = tela_vendas.labelValorTotalItem.setText(f"{soma}")
+    except (ValueError, TypeError) as e:
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage(f"Erro de valor: {str(e)}")
+        print("Erro de valor na função valor_total_item:", str(e))
+        erro_produto.exec_()
+    finally:
+        print("Final da função valor_total_item")
 
 def total_vendas():
     banco = mysql.connector.connect(
@@ -373,14 +387,20 @@ def total_vendas():
     print('Inicio total vendas')
     cursor = banco.cursor()
     
-    print('inicio da query')
-    query = 'SELECT SUM(total) from vendas'
-    cursor.execute(query, )
+    try:
+        print('inicio da query')
+        query = 'SELECT SUM(total) from vendas'
+        cursor.execute(query, )
 
-    tot = cursor.fetchone()[0]
+        tot = cursor.fetchone()[0]
 
-    labelValorTotal = tela_vendas.labelValorTotal.setText(f'{tot:.2f}')
-    print('Fim da função')
+        labelValorTotal = tela_vendas.labelValorTotal.setText(f'{tot:.2f}')
+        print('Fim da função')
+    except mysql.connector.Error as e:
+        erro_produto = QtWidgets.QErrorMessage()
+        erro_produto.showMessage(f"Erro na função total_vendas {str(e)}")
+        print("Erro na função total_vendas", str(e))
+        erro_produto.exec_()
 
 # tela inicial
 inicio = uic.loadUi('telas/tela_menu.ui')
@@ -389,7 +409,6 @@ tela_vendas = uic.loadUi('telas/tela_vendas.ui')
 
 #Campos das tela
 tela_vendas.lineQuant.editingFinished.connect(valor_total_item)
-
 
 # Botões - Telas
 pushMenu = inicio.pushMenu.clicked.connect(function_menu)

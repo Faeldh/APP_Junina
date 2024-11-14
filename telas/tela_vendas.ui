@@ -83,6 +83,15 @@
       <height>19</height>
      </size>
     </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lineNome">
     <property name="geometry">
@@ -179,6 +188,9 @@
      </property>
      <property name="text">
       <string>Adicionar</string>
+     </property>
+     <property name="default">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="pushRemover">
@@ -454,8 +466,16 @@ border: 2px solid gray;</string>
  </widget>
  <tabstops>
   <tabstop>lineID</tabstop>
+  <tabstop>lineNome</tabstop>
   <tabstop>pushPesquisa</tabstop>
+  <tabstop>lineQuant</tabstop>
+  <tabstop>pushAdicionar</tabstop>
+  <tabstop>pushRemover</tabstop>
+  <tabstop>tablePesquisa</tabstop>
+  <tabstop>tableVendas</tabstop>
+  <tabstop>tableListaEstoque</tabstop>
   <tabstop>pushVoltar</tabstop>
+  <tabstop>timeEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>
