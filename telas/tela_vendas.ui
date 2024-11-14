@@ -83,6 +83,15 @@
       <height>19</height>
      </size>
     </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lineNome">
     <property name="geometry">
@@ -173,25 +182,48 @@
       <rect>
        <x>30</x>
        <y>70</y>
-       <width>61</width>
+       <width>51</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>Adicionar</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../imagens/mais.png</normaloff>../imagens/mais.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="default">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="pushRemover">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>170</x>
        <y>70</y>
-       <width>61</width>
+       <width>51</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>Remover</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../imagens/menos.png</normaloff>../imagens/menos.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
      </property>
     </widget>
     <widget class="QLabel" name="labelValorTotal">
@@ -204,7 +236,8 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
+      <string notr="true">border: 2px solid #32cd32;
+padding-left: 8px</string>
      </property>
      <property name="text">
       <string>Valor Total</string>
@@ -223,7 +256,8 @@
       <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
+      <string notr="true">border: 1px solid white;
+padding-left: 8px</string>
      </property>
      <property name="text">
       <string>Valor UNIT.</string>
@@ -239,7 +273,8 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
+      <string notr="true">border: 1px solid white;
+padding-left: 8px</string>
      </property>
      <property name="text">
       <string>Valor Total item</string>
@@ -258,12 +293,14 @@
       <font>
        <family>Arial</family>
        <pointsize>12</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
+      <string notr="true">/*border: 1px solid white;*/
+color: #1e7a1e;
+background-color: transparent;</string>
      </property>
      <property name="text">
       <string>R$</string>
@@ -285,12 +322,14 @@
       <font>
        <family>Arial</family>
        <pointsize>12</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
+      <string notr="true">/*border: 1px solid white;*/
+color: #1e7a1e;
+background-color: transparent;</string>
      </property>
      <property name="text">
       <string>R$</string>
@@ -312,12 +351,14 @@
       <font>
        <family>Arial</family>
        <pointsize>12</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid white;</string>
+      <string notr="true">/*border: 1px solid white;*/
+color: #1e7a1e;
+background-color: transparent;</string>
      </property>
      <property name="text">
       <string>R$</string>
@@ -370,19 +411,6 @@ background-color: transparent;</string>
        <string>Quantidade</string>
       </property>
      </column>
-    </widget>
-    <widget class="QPushButton" name="pushFinalizar">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>110</y>
-       <width>191</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Finalizar</string>
-     </property>
     </widget>
    </widget>
    <widget class="QTableWidget" name="tableVendas">
@@ -453,6 +481,43 @@ border: 2px solid gray;</string>
      </property>
     </column>
    </widget>
+   <widget class="QPushButton" name="pushPesquisa_2">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>50</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../imagens/reload.png</normaloff>../imagens/reload.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>19</width>
+      <height>19</height>
+     </size>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -467,8 +532,16 @@ border: 2px solid gray;</string>
  </widget>
  <tabstops>
   <tabstop>lineID</tabstop>
+  <tabstop>lineNome</tabstop>
   <tabstop>pushPesquisa</tabstop>
+  <tabstop>lineQuant</tabstop>
+  <tabstop>pushAdicionar</tabstop>
+  <tabstop>pushRemover</tabstop>
+  <tabstop>tablePesquisa</tabstop>
+  <tabstop>tableVendas</tabstop>
+  <tabstop>tableListaEstoque</tabstop>
   <tabstop>pushVoltar</tabstop>
+  <tabstop>timeEdit</tabstop>
  </tabstops>
  <resources/>
  <connections/>
