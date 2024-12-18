@@ -439,7 +439,7 @@ pushVoltar = tela_vendas.pushVoltar.clicked.connect(tela_inicio)
 pushPesquisaVendas = tela_vendas.pushPesquisa.clicked.connect(pesquisa_vendas)
 pushAdicionarVendas = tela_vendas.pushAdicionar.clicked.connect(adicionar_vendas)
 pushRemoverVendas = tela_vendas.pushRemover.clicked.connect(remover_vendas)
-pushFinalizarVendas = tela_vendas.pushFinalizar.clicked.connect(finalizar_vendas)
+#pushFinalizarVendas = tela_vendas.pushFinalizar.clicked.connect(finalizar_vendas)
 
 # Botões Estoque
 pushAdicionarEstoque = tela_estoque.pushAdicionar.clicked.connect(adicionar_estoque)
