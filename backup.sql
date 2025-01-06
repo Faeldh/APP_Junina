@@ -47,5 +47,5 @@ INSERT INTO `historico` (`id`, `nome`, `valor_unit`, `quant`, `valor_total`, `ho
 (4, 'Quentão', 12.00, 2, 24.00, '2024-12-18 17:00:00'),
 (5, 'Cocada', 3.00, 7, 21.00, '2024-12-18 18:20:00');
 
--- tabela de vendas precisa estar vazia, é preenchida apenas
--- quando se usa a tela de vendas
+/* tabela de vendas precisa estar vazia, é preenchida
+apenas quando se usa a tela de vendas */
